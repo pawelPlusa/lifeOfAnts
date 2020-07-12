@@ -7,6 +7,7 @@ namespace LifeOfAnts
     {
         private HiveMap _map;
         private int roundCounter;
+        private bool shouldContinue = true;
 
         public static void Main()
         {
@@ -15,7 +16,18 @@ namespace LifeOfAnts
 
         private Program()
         {
-            _map = HiveMapLoader.InitiateMap(5);
+            _map = HiveMapLoader.InitiateMap(10);
+            do { _map = HiveMapLoader.UpdateMap(_map);
+                _map.DrawMap();
+                string userInput = Console.ReadLine();
+
+                if (userInput == "q")
+                {
+                    ShouldContinue = false;
+                }
+            }
+            while (!ShouldContinue);
+            
             //foreach(string test111 in test1.allFieldsType)
             //{
             //    Console.WriteLine(test111);
@@ -23,5 +35,6 @@ namespace LifeOfAnts
             //_map = new HiveMap(203,203);
 
         }
+        public bool ShouldContinue { get; set; }
     }
 }

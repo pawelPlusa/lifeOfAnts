@@ -18,20 +18,21 @@ namespace LifeOfAnts.Logic.Actors
         public void Move()
         //public void Move(Tuple<int, int> nextMoveCoords)
         {
-            Tuple<int, int> moveCoords = PlanMove();
+            //Tuple<int, int> moveCoords = PlanMove();
+            Console.WriteLine(this.Symbol + " is moving");
             
-            Cell nextCell = Cell.GetNeighbor(moveCoords.Item1, moveCoords.Item2);
+            //Cell nextCell = Cell.GetNeighbor(moveCoords.Item1, moveCoords.Item2);
 
-            if(!nextCell.Actor?.IsNotPassable ?? true)
-            {
-                Cell.Actor = null;
-                nextCell.Actor = this;
-                Cell = nextCell;
-            }
-            else
-            {
-                Console.WriteLine("else move");
-            }
+            //if(!nextCell.Actor?.IsNotPassable ?? true)
+            //{
+            //    Cell.Actor = null;
+            //    nextCell.Actor = this;
+            //    Cell = nextCell;
+            //}
+            //else
+            //{
+            //    Console.WriteLine("else move");
+            //}
         }
         public abstract bool IsNotPassable { get; }
 

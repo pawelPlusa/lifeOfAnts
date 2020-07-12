@@ -22,6 +22,17 @@ namespace LifeOfAnts.Logic
         public static HiveMap UpdateMap(HiveMap map)
         {
             HiveMap updatedMap = map;
+            for (var x = 0; x < updatedMap.Dimensions; x++)
+            {
+                for (var y = 0; y < updatedMap.Dimensions; y++)
+                {
+                    Cell cell = map.GetCell(x, y);
+                    if(cell.Actor?.IsNotPassable ?? false)
+                    {
+                        cell.Actor.Move();
+                    }
+                }
+            }
             return updatedMap;
         }
 

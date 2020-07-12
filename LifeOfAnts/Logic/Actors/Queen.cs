@@ -19,12 +19,12 @@ namespace LifeOfAnts.Logic.Actors
             int listCounter = 0;
             for(int x = 0; x<map.Dimensions; x++)
             {
-                for(int y = 0; y<map.Dimensions; y++)
+                for (int y = 0; y < map.Dimensions; y++)
                 {
                     Cell cell = map.GetCell(x, y);
                     if (!cell.Ant?.IsNotPassable ?? true)
                     {
-                        Console.WriteLine("wpadl queen if");
+                        //Console.WriteLine("chuj");
                         switch (listOfPopulatedFields[listCounter])
                         {
                             case "drone":
@@ -45,10 +45,12 @@ namespace LifeOfAnts.Logic.Actors
 
                         }
                     }
+                    else { }
                     listCounter++;
 
                 }
             }
+            map.DrawMap();
 
 
         }
