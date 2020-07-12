@@ -8,9 +8,9 @@ namespace LifeOfAnts.Logic
     public class Cell
     {
         private HiveMap _actualMap;
-        public Cell(int x, int y)
+        public Cell(HiveMap actualMap, int x, int y)
         {
-            //_actualMap = actualMap;
+            _actualMap = actualMap;
             X = x;
             Y = y;
         }
@@ -21,7 +21,7 @@ namespace LifeOfAnts.Logic
 
         public Cell GetNeighbor(int dx, int dy)
         {
-            return _actualMap.GetCell(X + dx, Y + dy);
+            return _actualMap.GetCell(dx,dy);
         }
 
         public Actor Actor;

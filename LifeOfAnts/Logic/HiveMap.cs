@@ -18,7 +18,7 @@ namespace LifeOfAnts
             {
                 for (var y = 0; y < Height; y++)
                 {
-                    _cells[x, y] = new Cell(x, y);
+                    _cells[x, y] = new Cell(this,x, y);
                 }
             }
         }

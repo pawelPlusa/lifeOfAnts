@@ -97,9 +97,14 @@ namespace LifeOfAnts.Logic.Actors
         {
             throw new NotImplementedException();
         }
-        public new bool Move() {
+        //public new bool Move() {
+        //    //instead of move Queen has mood generator
+        //    return true;
+        //}
+        public override void Move()
+        {
             //instead of move Queen has mood generator
-            return true;
+            Console.WriteLine("Queen check for mood");
         }
 
     }

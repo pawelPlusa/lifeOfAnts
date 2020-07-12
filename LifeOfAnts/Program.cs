@@ -17,6 +17,8 @@ namespace LifeOfAnts
         private Program()
         {
             _map = HiveMapLoader.InitiateMap(10);
+           // _map.DrawMap();
+            string pause = Console.ReadLine();
             do { _map = HiveMapLoader.UpdateMap(_map);
                 _map.DrawMap();
                 string userInput = Console.ReadLine();

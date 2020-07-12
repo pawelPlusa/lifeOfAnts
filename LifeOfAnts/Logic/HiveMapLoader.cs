@@ -21,6 +21,7 @@ namespace LifeOfAnts.Logic
 
         public static HiveMap UpdateMap(HiveMap map)
         {
+            //need to divide loops to old map/new map to avoid moving more than once
             HiveMap updatedMap = map;
             for (var x = 0; x < updatedMap.Dimensions; x++)
             {

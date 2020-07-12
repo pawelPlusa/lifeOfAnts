@@ -22,7 +22,20 @@ namespace LifeOfAnts.Logic.Actors
 
         public override Tuple<int, int> PlanMove()
         {
-            throw new NotImplementedException();
+            List<(int, int)> movingOptions = new List<(int, int)>
+            {
+                (1,0),(0,1),(-1,0),(0,-1)
+            };
+            Random diece = new Random();
+            int randomisedNumber = diece.Next(0, 3);
+            int nextCellX = Cell.X + movingOptions[randomisedNumber].Item1;
+            int nextCellY = Cell.Y + movingOptions[randomisedNumber].Item2;
+            return new Tuple<int, int>(nextCellX, nextCellY);
+        }
+
+        public override void Move()
+        {
+            Console.WriteLine("Move from soldeir");
         }
     }
 }
