@@ -8,11 +8,30 @@ namespace LifeOfAnts.Logic.Actors
     [Serializable]
     public class Queen:Ant
     {
+        private int moodCounter;
+        private bool readyForMating;
+        private int matingCounter;
+        private bool injected;
         //public List<string> allFieldsType = new List<string>();
         public Queen(Cell cell) : base(cell) {
-        
+            Console.WriteLine("CRFEATING QUEEN");
+            MoodCounter = RandomMoodSetter();
+            ReadyForMating = false;
+            Injected = false;
+            MatingCounter = 0;
+            
         }
-
+        public int MatingCounter { get; set; }
+        public bool Injected { get; set; }
+        public bool ReadyForMating { get; set; }
+        public int MoodCounter { get; set; }
+        private int RandomMoodSetter()
+        {
+            Random numberGenerator = new Random();
+            //int moodCounter = numberGenerator.Next(50, 101);
+            //return moodCounter;
+            return numberGenerator.Next(10, 20);
+        }
         public override void GenerateAnts(ref HiveMap map)
         {
 
@@ -111,7 +130,33 @@ namespace LifeOfAnts.Logic.Actors
         public override void Move()
         {
             //instead of move Queen has mood generator
-            Console.WriteLine("Queen check for mood");
+            Console.WriteLine("");
+            
+            if (MoodCounter > 0)
+            {
+                Console.WriteLine("Mood counter: {0}", MoodCounter);
+                MoodCounter--;
+            }
+            else
+            {
+                Console.WriteLine("READY FOR MATING");
+                ReadyForMating = true;
+            }
+
+            if (Injected && MatingCounter < 10) 
+            { 
+                ++MatingCounter; 
+                Console.WriteLine("RFM:"+ReadyForMating); 
+                MoodCounter = 100; 
+            }
+            else if (Injected && MatingCounter == 10)
+            {
+                Console.WriteLine("Reseting after mating");
+                MoodCounter = RandomMoodSetter();
+                Injected = false;
+                MatingCounter = 0;
+                ReadyForMating = false;
+            }
         }
 
     }

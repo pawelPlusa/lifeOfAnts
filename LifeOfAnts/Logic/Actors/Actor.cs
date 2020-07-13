@@ -14,13 +14,14 @@ namespace LifeOfAnts.Logic.Actors
             Cell = cell;
             Cell.Actor = this;
         }
+        public Queen Queen;
         public abstract Tuple<int,int> PlanMove();
         
         public virtual void Move()
         //public void Move(Tuple<int, int> nextMoveCoords)
         {
             Tuple<int, int> moveCoords = PlanMove();
-            Console.WriteLine(this.Symbol + " is moving");
+            //Console.WriteLine(this.Symbol + " is moving");
 
             Cell nextCell = Cell.GetNeighbor(moveCoords.Item1, moveCoords.Item2);
 
