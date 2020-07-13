@@ -14,6 +14,7 @@ namespace LifeOfAnts.Logic
             Cell queenCell = map.GetCell(dimensions / 2, dimensions / 2);
             queenCell.Ant = new Queen(queenCell);
             queenCell.PrintCoords();
+            
             //why i cannot acces queen methods when queenCell.Ant = new Queen(..)
             queenCell.Ant.GenerateAnts(ref map);
             return map;

@@ -1,4 +1,5 @@
 ﻿using LifeOfAnts.Logic;
+using LifeOfAnts.Logic.Actors;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,7 @@ namespace LifeOfAnts
     public class HiveMap
     {
         private Cell[,] _cells;
+        private List<Actor> allActors = new List<Actor>();
         private string testString = "org";
         public HiveMap(int dimensions)
         {
@@ -66,7 +68,11 @@ namespace LifeOfAnts
         public int Width { get; }
         public int Height { get; }
 
+        public Actor MyProperty { get; set; }
+
         public int Dimensions { get;  }
+
+        public List<Actor> AllActors { get; set; }
     }
 
 }
