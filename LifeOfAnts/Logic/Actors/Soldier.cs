@@ -7,6 +7,7 @@ namespace LifeOfAnts.Logic.Actors
     [Serializable]
     public class Soldier : Ant
     {
+        private int _whichMoveDir = 0;
         public Soldier(Cell cell) : base(cell) { }
         public override bool IsNotPassable => true;
 
@@ -27,16 +28,24 @@ namespace LifeOfAnts.Logic.Actors
             {
                 (1,0),(0,1),(-1,0),(0,-1)
             };
-            Random diece = new Random();
-            int randomisedNumber = diece.Next(0, 3);
-            int nextCellX = Cell.X + movingOptions[randomisedNumber].Item1;
-            int nextCellY = Cell.Y + movingOptions[randomisedNumber].Item2;
-            return new Tuple<int, int>(nextCellX, nextCellY);
+            _whichMoveDir = (_whichMoveDir < movingOptions.Count-1) ? ++_whichMoveDir : 0;
+            int nextCellX = Cell.X + movingOptions[_whichMoveDir].Item1;
+            int nextCellY = Cell.Y + movingOptions[_whichMoveDir].Item2;
+
+            if (nextCellX < 0 || nextCellY < 0 || nextCellX > Cell.ActualMap.Dimensions - 1
+                || nextCellY > Cell.ActualMap.Dimensions - 1)
+            {
+                return new Tuple<int, int>(Cell.X, Cell.Y);
+            }
+            else
+            {
+                return new Tuple<int, int>(nextCellX, nextCellY);
+            }
         }
 
-        public override void Move()
-        {
-            Console.WriteLine("Move from soldeir");
-        }
+        //public override void Move()
+        //{
+        //    Console.WriteLine("Move from soldeir");
+        //}
     }
 }

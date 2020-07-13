@@ -10,7 +10,7 @@ namespace LifeOfAnts
     public class HiveMap
     {
         private Cell[,] _cells;
-        private List<Actor> allActors = new List<Actor>();
+        private List<Actor> _allActors = new List<Actor>();
         private string testString = "org";
         public HiveMap(int dimensions)
         {
@@ -47,9 +47,9 @@ namespace LifeOfAnts
 
         public void DrawMap()
         {
-            for (var x = 0; x < Width; x++)
+            for (var y = 0; y < Width; y++)
             {
-                for (var y = 0; y < Height; y++)
+                for (var x = 0; x < Height; x++)
                 {
                     Cell cell = this.GetCell(x, y);
                     if (cell.Actor?.IsNotPassable ?? false)
@@ -72,7 +72,7 @@ namespace LifeOfAnts
 
         public int Dimensions { get;  }
 
-        public List<Actor> AllActors { get; set; }
+        public List<Actor> AllActors { get=> _allActors; set => _allActors=value; }
     }
 
 }

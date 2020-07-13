@@ -32,19 +32,25 @@ namespace LifeOfAnts.Logic.Actors
                                 cell.Ant = new Drone(cell);
                                 Console.WriteLine("Drone created");
                                 cell.PrintCoords();
+                                map.AllActors.Add(cell.Ant);
+
                                 break;
                             case "worker":
                                 cell.Ant = new Worker(cell);
                                 Console.WriteLine("Worker created");
+
                                 cell.PrintCoords();
+                                map.AllActors.Add(cell.Ant);
                                 break;
                             case "soldier":
                                 cell.Ant = new Soldier(cell);
                                 Console.WriteLine("Soldier created");
                                 cell.PrintCoords();
+                                map.AllActors.Add(cell.Ant);
                                 break;
 
                         }
+                        
                     }
                     else { }
                     listCounter++;
@@ -80,7 +86,7 @@ namespace LifeOfAnts.Logic.Actors
                 for (int i = 0; i < kvp.Value; i++)
                 {
                     allFieldsType.Add(kvp.Key);
-                    Console.WriteLine(kvp.Key);
+                    //Console.WriteLine(kvp.Key);
                 }
             }
             List<string> shuffledAllFieldsType = allFieldsType.OrderBy(x => Guid.NewGuid()).ToList();

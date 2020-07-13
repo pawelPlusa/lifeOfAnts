@@ -33,8 +33,8 @@ namespace LifeOfAnts.Logic.Actors
             Console.WriteLine("RN: {0}",randomisedNumber);
             int nextCellX = Cell.X + movingOptions[randomisedNumber].Item1;
             int nextCellY = Cell.Y + movingOptions[randomisedNumber].Item2;
-            if (nextCellX < 0 || nextCellY < 0 || nextCellX >10 - 1
-                || nextCellY > 10 - 1)
+            if (nextCellX < 0 || nextCellY < 0 || nextCellX >Cell.ActualMap.Dimensions - 1
+                || nextCellY > Cell.ActualMap.Dimensions - 1)
             {
                 return new Tuple<int, int>(Cell.X, Cell.Y);
             }
