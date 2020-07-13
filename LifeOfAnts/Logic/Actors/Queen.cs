@@ -60,8 +60,8 @@ namespace LifeOfAnts.Logic.Actors
             List<string> allFieldsType = new List<string>();
             double numberOfFields = Math.Pow(dimensions, 2);
             int dronePopulation = (int)(numberOfFields * 0.005);
-            int workerPopulation = (int)(numberOfFields * 0.01);
-            int soldierPopulation = (int)(numberOfFields * 0.03);
+            int workerPopulation = (int)(numberOfFields * 0.02);
+            int soldierPopulation = (int)(numberOfFields * 0.01);
             int emptyFields = (int)numberOfFields - (dronePopulation + workerPopulation + soldierPopulation);
             Console.WriteLine($"no fields:{numberOfFields}, drone: {dronePopulation}, worker: {workerPopulation}, soldier:{soldierPopulation}" +
                 $"all insects sum:{dronePopulation + workerPopulation + soldierPopulation}, empty fields: {emptyFields}");
