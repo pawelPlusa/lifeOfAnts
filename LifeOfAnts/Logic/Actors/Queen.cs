@@ -5,6 +5,7 @@ using System.Text;
 
 namespace LifeOfAnts.Logic.Actors
 {
+    [Serializable]
     public class Queen:Ant
     {
         //public List<string> allFieldsType = new List<string>();

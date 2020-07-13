@@ -5,6 +5,7 @@ using System.Text;
 
 namespace LifeOfAnts.Logic
 {
+    [Serializable]
     public class Cell
     {
         private HiveMap _actualMap;

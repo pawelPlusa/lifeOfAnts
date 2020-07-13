@@ -4,6 +4,7 @@ using System.Text;
 
 namespace LifeOfAnts.Logic.Actors
 {
+    [Serializable]
     class Wasp : Actor
 
        

@@ -4,6 +4,7 @@ using System.Text;
 
 namespace LifeOfAnts.Logic.Actors
 {
+    [Serializable]
     public abstract class Actor:IDrawable
     {
 

@@ -4,6 +4,7 @@ using System.Text;
 
 namespace LifeOfAnts.Logic.Actors
 {
+    [Serializable]
     public class Soldier : Ant
     {
         public Soldier(Cell cell) : base(cell) { }

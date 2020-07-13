@@ -5,9 +5,11 @@ using System.Text;
 
 namespace LifeOfAnts
 {
+    [Serializable]
     public class HiveMap
     {
-        private readonly Cell[,] _cells;
+        private Cell[,] _cells;
+        private string testString = "org";
         public HiveMap(int dimensions)
         {
             Dimensions = dimensions;
@@ -21,6 +23,23 @@ namespace LifeOfAnts
                     _cells[x, y] = new Cell(this,x, y);
                 }
             }
+        }
+        public HiveMap ShallowCopy()
+        {
+            return (HiveMap)this.MemberwiseClone();
+        }
+        public HiveMap DeepCopy()
+        {
+            HiveMap copy = (HiveMap)this.MemberwiseClone();
+            copy._cells = new Cell[Width, Height];
+            for (var x = 0; x < Width; x++)
+            {
+                for (var y = 0; y < Height; y++)
+                {
+                    copy._cells[x, y] = this.GetCell(x, y);
+                }
+            }
+            return copy;
         }
 
 
