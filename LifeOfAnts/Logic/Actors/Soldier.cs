@@ -71,13 +71,7 @@ namespace LifeOfAnts.Logic.Actors
                     Actor wasp = Cell.ActualMap.AllActors[waspIndex];
                     wasp.Cell.Actor.IsNotPassable = false;
                     wasp.Cell.Actor = null;
-
-
                     Cell.ActualMap.AllActors.RemoveAt(waspIndex);
-                    foreach (Actor singleAct in Cell.ActualMap.AllActors)
-                    {
-                        Console.WriteLine(singleAct);
-                    }
 
                     Cell.ActualMap.IsWaspOnMap = false;
                     //new Wasp Counter
@@ -93,18 +87,20 @@ namespace LifeOfAnts.Logic.Actors
                     {
                         return new Tuple<int, int>(SoldierX + 1, SoldierY);
                     }
-                    else if (!this.Cell.GetNeighbor(SoldierX, SoldierY + 1).Actor?.IsNotPassable ?? true && (SoldierY + 1) < this.Cell.ActualMap.Dimensions - 1)
+                    else if ((SoldierY + 1) < this.Cell.ActualMap.Dimensions - 1 && (!this.Cell.GetNeighbor(SoldierX, SoldierY + 1).Actor?.IsNotPassable ?? true))
                     {
                         if (!this.Cell.GetNeighbor(SoldierX + 1, SoldierY + 1).Actor?.IsNotPassable ?? true)
                         {
                             return new Tuple<int, int>(SoldierX, SoldierY + 1);
                         }
+
                         else if (!this.Cell.GetNeighbor(SoldierX, SoldierY - 1).Actor?.IsNotPassable ?? true && (SoldierY - 1) > 0)
                         {
                             if (!this.Cell.GetNeighbor(SoldierX + 1, SoldierY - 1).Actor?.IsNotPassable ?? true)
                             {
                                 return new Tuple<int, int>(SoldierX, SoldierY - 1);
                             }
+                            else { return new Tuple<int, int>(SoldierX, SoldierY); }
 
                         }
                         else { return new Tuple<int, int>(SoldierX, SoldierY); }
@@ -117,7 +113,7 @@ namespace LifeOfAnts.Logic.Actors
                     {
                         return new Tuple<int, int>(SoldierX - 1, SoldierY);
                     }
-                    else if (!this.Cell.GetNeighbor(SoldierX, SoldierY + 1).Actor?.IsNotPassable ?? true && (SoldierY + 1) < this.Cell.ActualMap.Dimensions - 1)
+                    else if ((SoldierY + 1) < this.Cell.ActualMap.Dimensions - 1&& (!this.Cell.GetNeighbor(SoldierX, SoldierY + 1).Actor?.IsNotPassable ?? true))
                     {
                         if (!this.Cell.GetNeighbor(SoldierX - 1, SoldierY + 1).Actor?.IsNotPassable ?? true)
                         {
@@ -129,6 +125,7 @@ namespace LifeOfAnts.Logic.Actors
                             {
                                 return new Tuple<int, int>(SoldierX, SoldierY - 1);
                             }
+                            else { return new Tuple<int, int>(SoldierX, SoldierY); }
 
                         }
                         else { return new Tuple<int, int>(SoldierX, SoldierY); }
@@ -142,7 +139,7 @@ namespace LifeOfAnts.Logic.Actors
                     {
                         return new Tuple<int, int>(SoldierX, SoldierY + 1);
                     }
-                    else if (!this.Cell.GetNeighbor(SoldierX + 1, SoldierY).Actor?.IsNotPassable ?? true && (SoldierX + 1) < this.Cell.ActualMap.Dimensions - 1)
+                    else if ((SoldierX + 1) < this.Cell.ActualMap.Dimensions - 1 && (!this.Cell.GetNeighbor(SoldierX + 1, SoldierY).Actor?.IsNotPassable ?? true))
                     {
                         if (!this.Cell.GetNeighbor(SoldierX + 1, SoldierY + 1).Actor?.IsNotPassable ?? true)
                         {
@@ -154,6 +151,7 @@ namespace LifeOfAnts.Logic.Actors
                             {
                                 return new Tuple<int, int>(SoldierX - 1, SoldierY);
                             }
+                            else { return new Tuple<int, int>(SoldierX, SoldierY); }
 
                         }
                         else { return new Tuple<int, int>(SoldierX, SoldierY); }
@@ -166,20 +164,22 @@ namespace LifeOfAnts.Logic.Actors
                     {
                         return new Tuple<int, int>(SoldierX, SoldierY - 1);
                     }
-                }
-                else if (!this.Cell.GetNeighbor(SoldierX + 1, SoldierY).Actor?.IsNotPassable ?? true && (SoldierX + 1) < this.Cell.ActualMap.Dimensions - 1)
-                {
-                    if (!this.Cell.GetNeighbor(SoldierX + 1, SoldierY - 1).Actor?.IsNotPassable ?? true)
+                    else if ((SoldierX + 1) < this.Cell.ActualMap.Dimensions - 1 && (!this.Cell.GetNeighbor(SoldierX + 1, SoldierY).Actor?.IsNotPassable ?? true))
                     {
-                        return new Tuple<int, int>(SoldierX + 1, SoldierY);
-                    }
-                    else if (!this.Cell.GetNeighbor(SoldierX - 1, SoldierY).Actor?.IsNotPassable ?? true && (SoldierX - 1) > 0)
-                    {
-                        if (!this.Cell.GetNeighbor(SoldierX - 1, SoldierY - 1).Actor?.IsNotPassable ?? true)
+                        if (!this.Cell.GetNeighbor(SoldierX + 1, SoldierY - 1).Actor?.IsNotPassable ?? true)
                         {
-                            return new Tuple<int, int>(SoldierX - 1, SoldierY);
+                            return new Tuple<int, int>(SoldierX + 1, SoldierY);
                         }
+                        else if (!this.Cell.GetNeighbor(SoldierX - 1, SoldierY).Actor?.IsNotPassable ?? true && (SoldierX - 1) > 0)
+                        {
+                            if (!this.Cell.GetNeighbor(SoldierX - 1, SoldierY - 1).Actor?.IsNotPassable ?? true)
+                            {
+                                return new Tuple<int, int>(SoldierX - 1, SoldierY);
+                            }
+                            else { return new Tuple<int, int>(SoldierX, SoldierY); }
 
+                        }
+                        else { return new Tuple<int, int>(SoldierX, SoldierY); }
                     }
                     else { return new Tuple<int, int>(SoldierX, SoldierY); }
                 }

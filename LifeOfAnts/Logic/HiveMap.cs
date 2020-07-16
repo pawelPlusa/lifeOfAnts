@@ -62,7 +62,13 @@ namespace LifeOfAnts
                     Cell cell = this.GetCell(x, y);
                     if (cell.Actor?.IsNotPassable ?? false)
                     {
-                        Console.Write(_cells[x, y].Actor.Symbol);
+                        if (_cells[x, y].Actor.Symbol == '8') {
+                            
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("{0}", (char)(966)); 
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        else { Console.Write(_cells[x, y].Actor.Symbol); }
                     }
                     else
                     {

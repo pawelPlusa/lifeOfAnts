@@ -57,6 +57,10 @@ namespace LifeOfAnts.Logic
             {
                 singleActor.Move();
             }
+            if (map.IsWaspOnMap)
+            {
+                Console.WriteLine("Hunting on wasp phase");
+            }
             map.DrawMap();
             //need to divide loops to old map/new map to avoid moving more than once
             //Console.WriteLine("entering update map");

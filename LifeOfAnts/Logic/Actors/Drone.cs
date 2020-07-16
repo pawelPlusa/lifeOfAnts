@@ -103,7 +103,7 @@ namespace LifeOfAnts.Logic.Actors
                 if (this.Cell.GetNeighbor(shuffledKickoutCoords[shuffledKickoutCoords.Count - 1].Item1,
                     shuffledKickoutCoords[shuffledKickoutCoords.Count - 1].Item2).Actor?.IsNotPassable ?? false)
                 {
-                    Console.WriteLine("Field {0} was occupied",shuffledKickoutCoords[shuffledKickoutCoords.Count-1] );
+                    //Console.WriteLine("Field {0} was occupied",shuffledKickoutCoords[shuffledKickoutCoords.Count-1] );
                     shuffledKickoutCoords.RemoveAt(shuffledKickoutCoords.Count - 1);
                 }
                 else
