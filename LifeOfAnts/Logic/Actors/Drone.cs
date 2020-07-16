@@ -57,15 +57,17 @@ namespace LifeOfAnts.Logic.Actors
                     }
                     else
                     {
-                        Console.WriteLine("Kicked");
+                        //Console.WriteLine("Kicked");
                         MatingCounter = 0;
                         Tuple<int, int> whereKickDrone = DroneKickOutCoords();
-                        //return new Tuple<int, int>(DroneKickOutCoords());
-                        Console.WriteLine(whereKickDrone);
                         return whereKickDrone;
+
+                        //is any way to shorten it to one line like something like this:
+                        //return new Tuple<int, int>(DroneKickOutCoords());
+
                     }
                 }
-
+                // how drone is heading towards Queen
                 if (QueenX > DroneX && (!this.Cell.GetNeighbor(DroneX + 1, DroneY).Actor?.IsNotPassable ?? true))
                 {
                     return new Tuple<int, int>(DroneX + 1, DroneY);
@@ -93,11 +95,11 @@ namespace LifeOfAnts.Logic.Actors
             List<(int,int)> possibleKickoutCoords = new List<(int, int)>
             { (0,QueenY), (QueenX,QueenY*2-1), (QueenX*2-1, QueenY), (QueenX,0) };
             List<(int, int)> shuffledKickoutCoords = possibleKickoutCoords.OrderBy(x => Guid.NewGuid()).ToList();
+           
             // checking if kickout cell is free if not removes from list and takes next last untill free or empty list
 
             while (shuffledKickoutCoords.Count > 0)
             {
-                Console.WriteLine("wlazlo while");
                 if (this.Cell.GetNeighbor(shuffledKickoutCoords[shuffledKickoutCoords.Count - 1].Item1,
                     shuffledKickoutCoords[shuffledKickoutCoords.Count - 1].Item2).Actor?.IsNotPassable ?? false)
                 {
@@ -112,7 +114,6 @@ namespace LifeOfAnts.Logic.Actors
                 }
 
             }
-            Console.WriteLine("po while");
             return new Tuple<int, int>(this.X, this.Y)
 
             ;

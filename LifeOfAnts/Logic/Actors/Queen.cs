@@ -8,11 +8,6 @@ namespace LifeOfAnts.Logic.Actors
     [Serializable]
     public class Queen:Ant
     {
-        private int moodCounter;
-        private bool readyForMating;
-        private int matingCounter;
-        private bool injected;
-        //public List<string> allFieldsType = new List<string>();
         public Queen(Cell cell) : base(cell) {
             Console.WriteLine("CRFEATING QUEEN");
             MoodCounter = RandomMoodSetter();
@@ -28,12 +23,11 @@ namespace LifeOfAnts.Logic.Actors
         private int RandomMoodSetter()
         {
             Random numberGenerator = new Random();
-            //int moodCounter = numberGenerator.Next(50, 101);
-            //return moodCounter;
             return numberGenerator.Next(10, 20);
         }
         public override void GenerateAnts(ref HiveMap map)
         {
+            //pupulating maps with actors and adding them to list
 
             List<string> listOfPopulatedFields = PopulateList(map.Dimensions);
             int listCounter = 0;
@@ -44,7 +38,6 @@ namespace LifeOfAnts.Logic.Actors
                     Cell cell = map.GetCell(x, y);
                     if (!cell.Ant?.IsNotPassable ?? true)
                     {
-                        //Console.WriteLine("chuj");
                         switch (listOfPopulatedFields[listCounter])
                         {
                             case "drone":
@@ -109,8 +102,6 @@ namespace LifeOfAnts.Logic.Actors
                 }
             }
             List<string> shuffledAllFieldsType = allFieldsType.OrderBy(x => Guid.NewGuid()).ToList();
-            //shuffledAllFieldsType[(int)numberOfFields / 2] = "queen";
-            //Console.WriteLine(shuffledAllFieldsType.Count());
             return shuffledAllFieldsType;
 
 
@@ -123,13 +114,11 @@ namespace LifeOfAnts.Logic.Actors
         {
             throw new NotImplementedException();
         }
-        //public new bool Move() {
-        //    //instead of move Queen has mood generator
-        //    return true;
-        //}
         public override void Move()
         {
-            //instead of move Queen has mood generator
+            //instead of move Queen has mood generator - to avoid adding another method to Actor
+            //and to be able to access this mood counter from Actor class
+            
             Console.WriteLine("");
             
             if (MoodCounter > 0)
@@ -146,12 +135,12 @@ namespace LifeOfAnts.Logic.Actors
             if (Injected && MatingCounter < 10) 
             { 
                 ++MatingCounter; 
-                Console.WriteLine("RFM:"+ReadyForMating); 
+                //Console.WriteLine("RFM:"+ReadyForMating); 
                 MoodCounter = 100; 
             }
             else if (Injected && MatingCounter == 10)
             {
-                Console.WriteLine("Reseting after mating");
+                //Console.WriteLine("Reseting after mating");
                 MoodCounter = RandomMoodSetter();
                 Injected = false;
                 MatingCounter = 0;

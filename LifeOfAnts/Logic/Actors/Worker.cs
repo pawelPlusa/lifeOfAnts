@@ -32,7 +32,6 @@ namespace LifeOfAnts.Logic.Actors
             };
                 Random diece = new Random();
                 int randomisedNumber = diece.Next(0, 4);
-                Console.WriteLine("RN: {0}", randomisedNumber);
                 int nextCellX = Cell.X + movingOptions[randomisedNumber].Item1;
                 int nextCellY = Cell.Y + movingOptions[randomisedNumber].Item2;
                 if (nextCellX < 0 || nextCellY < 0 || nextCellX > Cell.ActualMap.Dimensions - 1

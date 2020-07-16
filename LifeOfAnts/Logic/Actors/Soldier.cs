@@ -13,9 +13,6 @@ namespace LifeOfAnts.Logic.Actors
 
         public override char Symbol => 'S';
 
-        //public override void Move()
-        //{ }
-
 
         public override void GenerateAnts(ref HiveMap map)
         {
@@ -64,19 +61,13 @@ namespace LifeOfAnts.Logic.Actors
                 (Math.Abs(WaspX - SoldierX) == 0 && Math.Abs(WaspY - SoldierY) == 1))
                 {
                     Console.WriteLine("Killing wasp!");
-                    //is any way to make it shorter? use destructor? Get rid only Cell.Actor = null?
-                    //Cell waspCell = Cell.ActualMap.GetCell(WaspX, WaspY);
-                    //waspCell = new Cell(Cell.ActualMap, WaspX,WaspY);
-                    //Console.WriteLine(Cell.ActualMap.GetCell(WaspX, WaspY).Actor.GetType());
-                    
+
+                    // Why get rid of Wasp only by Cell.Actor = null is not working?
+                    //is any way to make it shorter? use destructor? 
+
                     Actor wasp = Cell.ActualMap.AllActors[waspIndex];
-                    //wasp.Cell = new Cell(Cell.ActualMap, WaspX, WaspY);
-                    Console.WriteLine("wasp coords" + wasp.X + ","+ wasp.Y);
-                    //wasp.Cell.Actor.IsNotPassable = false;
-                    wasp.Cell.Actor = null;
                     wasp.Cell.Actor.IsNotPassable = false;
-                    
-                    
+                    wasp.Cell.Actor = null;
                     
                     
                     Cell.ActualMap.AllActors.RemoveAt(waspIndex);
@@ -86,10 +77,12 @@ namespace LifeOfAnts.Logic.Actors
                     }
                     
                     Cell.ActualMap.IsWaspOnMap = false;
+                    //new Wasp Counter
                     Cell.ActualMap.WaspSpawnCounter = Extensions.MyRandomNumberGenerator(10, 12);
 
                     return new Tuple<int, int>(SoldierX, SoldierY);
                 }
+                //TODO implement checking for path at least 2 moves ahead to avoid being stuck 
 
                 if (WaspX > SoldierX && (!this.Cell.GetNeighbor(SoldierX + 1, SoldierY).Actor?.IsNotPassable ?? true))
                 {
@@ -109,16 +102,7 @@ namespace LifeOfAnts.Logic.Actors
                 }
                 else { return new Tuple<int, int>(SoldierX, SoldierY); }
 
-
-
-                Console.WriteLine("Heading towards Wasp");
-                return new Tuple<int, int>(Cell.X, Cell.Y);
             }
         }
-
-        //public override void Move()
-        //{
-        //    Console.WriteLine("Move from soldeir");
-        //}
     }
 }

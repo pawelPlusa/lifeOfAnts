@@ -16,13 +16,15 @@ namespace LifeOfAnts.Logic.Actors
             IsNotPassable = true;
         }
         public Queen Queen;
+        
+        //Method which would be different for derived classes
+        //thanks to that approach all classes can implement same Move method 
+        //(except Queen -> look for queen Move Method comment) 
         public abstract Tuple<int,int> PlanMove();
         
         public virtual void Move()
-        //public void Move(Tuple<int, int> nextMoveCoords)
         {
             Tuple<int, int> moveCoords = PlanMove();
-            //Console.WriteLine(this.Symbol + " is moving");
 
             Cell nextCell = Cell.GetNeighbor(moveCoords.Item1, moveCoords.Item2);
 
@@ -50,7 +52,6 @@ namespace LifeOfAnts.Logic.Actors
         /// </summary>
         public int Y => Cell.Y;
 
-        //public abstract string Tilename => "actor";
 
         public abstract char Symbol { get; }
     }

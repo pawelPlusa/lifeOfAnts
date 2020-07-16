@@ -17,10 +17,8 @@ namespace LifeOfAnts
 
         private Program()
         {
-            _map = HiveMapLoader.InitiateMap(10);
-           // _map.DrawMap();
+            _map = HiveMapLoader.InitiateMap(20);
             string pause = Console.ReadLine();
-            //_map2 = HiveMapLoader.UpdateMap(_map);
             do { _map = HiveMapLoader.UpdateMap(_map);
                 //_map.DrawMap();
                 //_map2.DrawMap();
@@ -33,11 +31,6 @@ namespace LifeOfAnts
             }
             while (!ShouldContinue);
             
-            //foreach(string test111 in test1.allFieldsType)
-            //{
-            //    Console.WriteLine(test111);
-            //}
-            //_map = new HiveMap(203,203);
 
         }
         public bool ShouldContinue { get; set; }
