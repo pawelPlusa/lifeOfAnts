@@ -24,7 +24,6 @@ namespace LifeOfAnts
             string pause = Console.ReadLine();
             do { _map = HiveMapLoader.UpdateMap(_map);
                 string userInput = Console.ReadLine();
-                Console.WriteLine(ShouldContinue);
                 if (userInput == "q")
                 {
                     ShouldContinue = true;
