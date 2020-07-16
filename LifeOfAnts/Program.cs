@@ -9,7 +9,7 @@ namespace LifeOfAnts
         private HiveMap _map;
         //private HiveMap _map2;
         //private int roundCounter;
-        private bool shouldContinue = true;
+        //private bool shouldContinue = true;
 
         public static void Main()
         {
@@ -24,10 +24,10 @@ namespace LifeOfAnts
             string pause = Console.ReadLine();
             do { _map = HiveMapLoader.UpdateMap(_map);
                 string userInput = Console.ReadLine();
-
+                Console.WriteLine(ShouldContinue);
                 if (userInput == "q")
                 {
-                    ShouldContinue = false;
+                    ShouldContinue = true;
                 }
             }
             while (!ShouldContinue);
