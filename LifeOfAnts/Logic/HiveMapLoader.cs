@@ -1,12 +1,15 @@
 ﻿using LifeOfAnts.Logic.Actors;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LifeOfAnts.Logic
 {
     public static class HiveMapLoader
     {
+        
+
         public static HiveMap InitiateMap(int dimensions)
         {
 
@@ -29,7 +32,28 @@ namespace LifeOfAnts.Logic
             //{
             //    Console.WriteLine(singleActor);
             //}
-            foreach (Actor singleActor in map.AllActors)
+            if (map.WaspSpawnCounter > 0) { map.WaspSpawnCounter--; Console.WriteLine("Wasp Counter: {0}",map.WaspSpawnCounter); }
+            else {
+                map.WaspSpawnCounter = Extensions.MyRandomNumberGenerator(30,60);
+                bool isWaspCreated = false;
+                while (!isWaspCreated)
+                {
+                    int waspX = Extensions.MyRandomNumberGenerator(0, map.Dimensions-1);
+                    int waspY = Extensions.MyRandomNumberGenerator(0, map.Dimensions-1);
+                    if(!map.GetCell(waspX,waspY).Actor?.IsNotPassable ?? true && !map.IsWaspOnMap)
+                    {
+                        Cell cell = map.GetCell(waspX, waspY);
+                        cell.Actor = new Wasp(cell);
+                        map.AllActors.Add(cell.Actor);
+                        isWaspCreated = true;
+                        
+                    }
+                }
+                
+            }
+            // adding ToList() makes copy so any changes in List (like remove Wasp) 
+            // should not end wit Exception
+            foreach (Actor singleActor in map.AllActors.ToList())
             {
                 singleActor.Move();
             }

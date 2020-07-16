@@ -2,22 +2,27 @@
 using LifeOfAnts.Logic.Actors;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
+
 
 namespace LifeOfAnts
 {
     [Serializable]
     public class HiveMap
     {
+
         private Cell[,] _cells;
         private List<Actor> _allActors = new List<Actor>();
-        private string testString = "org";
+        //private int waspSpawnCounter;
         public HiveMap(int dimensions)
         {
             Dimensions = dimensions;
             Width = dimensions;
             Height = dimensions;
             _cells = new Cell[Width, Height];
+            WaspSpawnCounter = Extensions.MyRandomNumberGenerator(10,12);
+            IsWaspOnMap = false;
             for (var x = 0; x < Width; x++)
             {
                 for (var y = 0; y < Height; y++)
@@ -26,6 +31,9 @@ namespace LifeOfAnts
                 }
             }
         }
+        
+        public int WaspSpawnCounter { get; set; }
+        public bool IsWaspOnMap { get; set; }
         public HiveMap ShallowCopy()
         {
             return (HiveMap)this.MemberwiseClone();

@@ -19,5 +19,11 @@ namespace LifeOfAnts.Logic
 				return (T)formatter.Deserialize(stream);
 			}
 		}
+		public static int MyRandomNumberGenerator(int min, int max)
+        {
+			Random generator = new Random();
+			return generator.Next(min, max + 1);
+
+        }
 	}
 }

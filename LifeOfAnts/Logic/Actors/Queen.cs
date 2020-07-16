@@ -86,7 +86,7 @@ namespace LifeOfAnts.Logic.Actors
             double numberOfFields = Math.Pow(dimensions, 2);
             int dronePopulation = (int)(numberOfFields * 0.02);
             int workerPopulation = (int)(numberOfFields * 0.02);
-            int soldierPopulation = (int)(numberOfFields * 0.01);
+            int soldierPopulation = (int)(numberOfFields * 0.02);
             int emptyFields = (int)numberOfFields - (dronePopulation + workerPopulation + soldierPopulation);
             Console.WriteLine($"no fields:{numberOfFields}, drone: {dronePopulation}, worker: {workerPopulation}, soldier:{soldierPopulation}" +
                 $"all insects sum:{dronePopulation + workerPopulation + soldierPopulation}, empty fields: {emptyFields}");
@@ -115,7 +115,7 @@ namespace LifeOfAnts.Logic.Actors
 
 
         }
-        public override bool IsNotPassable => true;
+        //public override bool IsNotPassable => true;
 
         public override char Symbol => 'Q';
 

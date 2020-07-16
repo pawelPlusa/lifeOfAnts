@@ -13,6 +13,7 @@ namespace LifeOfAnts.Logic.Actors
         {
             Cell = cell;
             Cell.Actor = this;
+            IsNotPassable = true;
         }
         public Queen Queen;
         public abstract Tuple<int,int> PlanMove();
@@ -33,10 +34,11 @@ namespace LifeOfAnts.Logic.Actors
             }
             else
             {
-                Console.WriteLine("else move");
+                //Console.WriteLine("else move");
             }
         }
-        public abstract bool IsNotPassable { get; }
+        public virtual bool IsNotPassable { get; set; }
+
 
         /// <summary>
         /// Gets the X position

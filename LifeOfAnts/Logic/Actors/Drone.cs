@@ -14,7 +14,7 @@ namespace LifeOfAnts.Logic.Actors
         }
         public int MatingCounter { get; set; }
 
-        public override bool IsNotPassable => true;
+        //public override bool IsNotPassable => true;
 
         public override char Symbol => 'D';
 
@@ -27,59 +27,63 @@ namespace LifeOfAnts.Logic.Actors
             //Casting actor to Queen to use Queen methods - IS OTHER WAY?????????????????????????????????????????
             // **********************************************
             Queen queen = (Queen)(Cell.ActualMap.AllActors[0]);
-            //if for checking if next to queen
-            if ((Math.Abs(QueenX-DroneX)==1 && Math.Abs(QueenY - DroneY) == 0) || 
+
+            if (!this.Cell.ActualMap.IsWaspOnMap)
+            {
+                //if for checking if next to queen
+                if ((Math.Abs(QueenX - DroneX) == 1 && Math.Abs(QueenY - DroneY) == 0) ||
                 (Math.Abs(QueenX - DroneX) == 0 && Math.Abs(QueenY - DroneY) == 1))
-            {
-                //if for checking if ready for mating
-                //if yes statring mating counter
-                //if not/finished beeing kicked
-                
-
-                if (queen.ReadyForMating)
                 {
-                    //Console.WriteLine(queen.ReadyForMating);
-                    Console.WriteLine("Time for meeting");
-                    MatingCounter++;
-                    queen.ReadyForMating = false;
-                    queen.Injected = true;
+                    //if for checking if ready for mating
+                    //if yes statring mating counter
+                    //if not/finished beeing kicked
 
-                    return new Tuple<int, int>(DroneX, DroneY);
-                }
-                else if (MatingCounter > 0 && MatingCounter < 10)
-                {
-                    MatingCounter++;
-                    Console.WriteLine("Mating in progress for: {0} turns",MatingCounter);
-                    return new Tuple<int, int>(DroneX, DroneY);
-                }
-                else
-                {
-                    Console.WriteLine("Kicked");
-                    MatingCounter = 0;
-                    Tuple<int, int> whereKickDrone = DroneKickOutCoords();
-                    //return new Tuple<int, int>(DroneKickOutCoords());
-                    Console.WriteLine(whereKickDrone);
-                    return whereKickDrone;
-                }
-            }
 
-            if(QueenX>DroneX && (!this.Cell.GetNeighbor(DroneX+1,DroneY).Actor?.IsNotPassable ?? true))
-            {
-                return new Tuple<int, int>(DroneX + 1, DroneY);
-            }
-            else if(QueenX<DroneX && (!this.Cell.GetNeighbor(DroneX-1,DroneY).Actor?.IsNotPassable ?? true))
-            {
-                return new Tuple<int, int>(DroneX - 1, DroneY);
-            }
-            else if(QueenY>DroneY && (!this.Cell.GetNeighbor(DroneX,DroneY+1).Actor?.IsNotPassable ?? true))
-            {
-                return new Tuple<int, int>(DroneX, DroneY + 1);
-            }
-            else if(QueenY<DroneY && (!this.Cell.GetNeighbor(DroneX, DroneY -1).Actor?.IsNotPassable ?? true))
-            {
-                return new Tuple<int, int>(DroneX, DroneY - 1);
-            }
-            else { return new Tuple<int, int>(DroneX, DroneY); }
+                    if (queen.ReadyForMating)
+                    {
+                        //Console.WriteLine(queen.ReadyForMating);
+                        Console.WriteLine("Time for meeting");
+                        MatingCounter++;
+                        queen.ReadyForMating = false;
+                        queen.Injected = true;
+
+                        return new Tuple<int, int>(DroneX, DroneY);
+                    }
+                    else if (MatingCounter > 0 && MatingCounter < 10)
+                    {
+                        MatingCounter++;
+                        Console.WriteLine("Mating in progress for: {0} turns", MatingCounter);
+                        return new Tuple<int, int>(DroneX, DroneY);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Kicked");
+                        MatingCounter = 0;
+                        Tuple<int, int> whereKickDrone = DroneKickOutCoords();
+                        //return new Tuple<int, int>(DroneKickOutCoords());
+                        Console.WriteLine(whereKickDrone);
+                        return whereKickDrone;
+                    }
+                }
+
+                if (QueenX > DroneX && (!this.Cell.GetNeighbor(DroneX + 1, DroneY).Actor?.IsNotPassable ?? true))
+                {
+                    return new Tuple<int, int>(DroneX + 1, DroneY);
+                }
+                else if (QueenX < DroneX && (!this.Cell.GetNeighbor(DroneX - 1, DroneY).Actor?.IsNotPassable ?? true))
+                {
+                    return new Tuple<int, int>(DroneX - 1, DroneY);
+                }
+                else if (QueenY > DroneY && (!this.Cell.GetNeighbor(DroneX, DroneY + 1).Actor?.IsNotPassable ?? true))
+                {
+                    return new Tuple<int, int>(DroneX, DroneY + 1);
+                }
+                else if (QueenY < DroneY && (!this.Cell.GetNeighbor(DroneX, DroneY - 1).Actor?.IsNotPassable ?? true))
+                {
+                    return new Tuple<int, int>(DroneX, DroneY - 1);
+                }
+                else { return new Tuple<int, int>(DroneX, DroneY); }
+            } else { return new Tuple<int, int>(DroneX, DroneY); }
 
         }
         public Tuple<int,int> DroneKickOutCoords()
