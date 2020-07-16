@@ -20,8 +20,6 @@ namespace LifeOfAnts
             _map = HiveMapLoader.InitiateMap(20);
             string pause = Console.ReadLine();
             do { _map = HiveMapLoader.UpdateMap(_map);
-                //_map.DrawMap();
-                //_map2.DrawMap();
                 string userInput = Console.ReadLine();
 
                 if (userInput == "q")
