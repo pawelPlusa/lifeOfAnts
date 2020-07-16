@@ -84,9 +84,15 @@ namespace LifeOfAnts.Logic.Actors
                 }
                 //TODO implement checking for path at least 2 moves ahead to avoid being stuck 
 
-                if (WaspX > SoldierX && (!this.Cell.GetNeighbor(SoldierX + 1, SoldierY).Actor?.IsNotPassable ?? true))
+                if (WaspX > SoldierX)
                 {
-                    return new Tuple<int, int>(SoldierX + 1, SoldierY);
+                    if(!this.Cell.GetNeighbor(SoldierX + 1, SoldierY).Actor?.IsNotPassable ?? true){
+                        return new Tuple<int, int>(SoldierX + 1, SoldierY);
+                    }
+                    else if(!this.Cell.GetNeighbor(SoldierX, SoldierY+1).Actor?.IsNotPassable ?? true && (SoldierY + 1) < this.Cell.ActualMap.Dimensions - 1)
+                    {
+                        Console.WriteLine("");
+                                            }
                 }
                 else if (WaspX < SoldierX && (!this.Cell.GetNeighbor(SoldierX - 1, SoldierY).Actor?.IsNotPassable ?? true))
                 {
